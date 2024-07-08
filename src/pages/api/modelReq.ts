@@ -6,11 +6,21 @@ const modelReq = async (req: NextApiRequest, res: NextApiResponse) => {
   
     if(req.method === "POST"){
       const { brand, contentObjective, targetAudience, industry, painPoints, goals } = req.body;
+      
+      console.log('Input Parameters:', {
+        brand,
+        contentObjective,
+        targetAudience,
+        industry,
+        painPoints,
+        goals
+      });
 
       const bioPrompt = `Create a bio for people who works in ${industry} for ${brand}.`;
       const painPointsPrompt = `Summarize the pain points of ${targetAudience} related to ${industry}: ${painPoints}.`;
       const goalsPrompt = `Summarize the goals of ${targetAudience} related to ${contentObjective}: ${goals}.`;
-  
+      
+      const startTime = Date.now();
 
     try {
           //cohere api
@@ -21,6 +31,8 @@ const modelReq = async (req: NextApiRequest, res: NextApiResponse) => {
           //gemini api
           const bioRes = await geminiApi(bioPrompt, 100, 0.7);
           
+          const endTime = Date.now();
+          console.log("execution time:", `${endTime-startTime} ms`)
         console.log(bioRes);
           res.status(200).json({ 
             bioRes: bioRes,
