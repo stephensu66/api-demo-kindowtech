@@ -11,8 +11,8 @@ interface ApiResponse {
 
 export default function Home() {
   const [brand, setBrand] = useState("");
-  const [indusry, setIndusry] = useState("");
-  const [contentObject, setContentObject] = useState("");
+  const [industry, setIndustry] = useState("");
+  const [contentObjective, setContentObjective] = useState("");
   const [targetAudience, setTargetAudience] = useState("");
   const [painPoints, setPainPoints] = useState("");
   const [goals, setGoals] = useState("");
@@ -27,7 +27,7 @@ export default function Home() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ brand, indusry, contentObject, painPoints, goals }),
+        body: JSON.stringify({ brand, contentObjective, targetAudience, industry, painPoints, goals }),
       });
 
 
@@ -54,15 +54,15 @@ export default function Home() {
         />
         <input
           type="text"
-          value={indusry}
-          onChange={(e) => setIndusry(e.target.value)}
-          placeholder="Enter indusry"
+          value={industry}
+          onChange={(e) => setIndustry(e.target.value)}
+          placeholder="Enter industry"
         />
         <input
           type="text"
-          value={contentObject}
-          onChange={(e) => setContentObject(e.target.value)}
-          placeholder="Enter contentObject"
+          value={contentObjective}
+          onChange={(e) => setContentObjective(e.target.value)}
+          placeholder="Enter contentObjective"
         />
         <input
           type="text"
